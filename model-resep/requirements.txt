@@ -1,0 +1,2 @@
+# Install modul Sastrawi
+!pip install Sastrawi
