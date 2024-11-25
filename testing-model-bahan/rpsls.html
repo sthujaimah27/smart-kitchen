@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Kitchen Image Classifier</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
+    <script src="webcam.js"></script>
+    <script src="rps-dataset.js"></script>
+    <script src="testing_model.js"></script>
+</head>
+<body>
+    <h1>Smart Kitchen Image Classifier</h1>
+
+    <!-- Webcam display -->
+    <video autoplay playsinline muted id="wc" width="224" height="224"></video>
+
+    <!-- Buttons for ingredients -->
+    <button id="0" onclick="handleButton(this)">Avocado</button>
+    <button id="1" onclick="handleButton(this)">Chili Powder</button>
+    <button id="2" onclick="handleButton(this)">Onion</button>
+    <button id="3" onclick="handleButton(this)">Garlic</button>
+    <button id="4" onclick="handleButton(this)">Eggs</button>
+
+    <!-- Displays for sample count -->
+    <div id="avocadoSamples">Avocado samples: 0</div>
+    <div id="chiliPowderSamples">Chili Powder samples: 0</div>
+    <div id="onionSamples">Onion samples: 0</div>
+    <div id="garlicSamples">Garlic samples: 0</div>
+    <div id="eggsSamples">Eggs samples: 0</div>
+
+    <!-- Buttons for actions -->
+    <button onclick="train()">Train Network</button>
+    <button onclick="startPredicting()">Start Predicting</button>
+    <button onclick="stopPredicting()">Stop Predicting</button>
+    <button onclick="saveModel()">Download Model</button>
+
+    <!-- File Upload -->
+    <input type="file" id="fileInput" multiple accept="image/*">
+    <div id="prediction"></div>
+
+    <script>
+        // Webcam functionality
+        const webcam = new Webcam(document.getElementById('wc'));
+        let isPredicting = false;
+        let model;
+
+        async function startPredicting() {
+            isPredicting = true;
+            await predict();
+        }
+
+        function stopPredicting() {
+            isPredicting = false;
+        }
+
+        async function predict() {
+            while (isPredicting) {
+                const img = webcam.capture();  // Capture a frame from the webcam
+                const predictions = model.predict(img);  // Get predictions from the model
+                const predictedClass = predictions.as1D().argMax().dataSync()[0];  // Get the class with the highest probability
+                const classNames = ['Avocado', 'Chili Powder', 'Onion', 'Garlic', 'Eggs'];  // Classes of ingredients
+                const prediction = classNames[predictedClass];  // Get the predicted class label
+
+                document.getElementById('prediction').innerText = `Prediction: ${prediction}`;  // Display prediction result
+                await tf.nextFrame();  // Wait for the next frame
+            }
+        }
+
+        // Handle file uploads
+        const fileInput = document.getElementById('fileInput');
+        fileInput.addEventListener('change', (event) => {
+            const files = event.target.files;
+            if (files) {
+                Array.from(files).forEach(file => {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const imgElement = new Image();
+                        imgElement.src = e.target.result;
+                        imgElement.onload = () => {
+                            handleFileUpload(imgElement, file.name);  // Handle the file upload when image is loaded
+                        };
+                    };
+                    reader.readAsDataURL(file);
+                });
+            }
+        });
+
+        function handleFileUpload(img, fileName) {
+            const label = fileName.split('.')[0];  // Use the file name (without extension) as the label
+            const classElement = document.getElementById(label + 'Samples');
+            let currentSamples = parseInt(classElement.innerText.split(': ')[1]);
+            classElement.innerText = `${label} samples: ${currentSamples + 1}`;
+
+            // Process the uploaded file with the model
+            predictImage(img);
+        }
+
+        function predictImage(img) {
+            // Process the uploaded image and predict its class
+            const imgTensor = tf.browser.fromPixels(img).resizeNearestNeighbor([224, 224]).toFloat().expandDims();
+            model.predict(imgTensor).then(predictions => {
+                const predictedClass = predictions.argMax(-1).dataSync()[0];
+                const classNames = ['Avocado', 'Chili Powder', 'Onion', 'Garlic', 'Eggs'];
+                const prediction = classNames[predictedClass];
+                document.getElementById('prediction').innerText = `Predicted: ${prediction}`;  // Display prediction result
+            });
+        }
+
+        // Train network function
+        let dataset = new RPSDataset();
+
+        async function train() {
+            dataset.ys = null;
+            dataset.encodeLabels(5);
+
+            model = tf.sequential({
+                layers: [
+                    tf.layers.flatten({ inputShape: mobilenet.outputs[0].shape.slice(1) }),
+                    tf.layers.dense({ units: 128, activation: 'relu' }),
+                    tf.layers.dense({ units: 64, activation: 'relu' }),
+                    tf.layers.dense({ units: 5, activation: 'softmax' }) // 5 classes
+                ]
+            });
+
+            const optimizer = tf.train.adam(0.0001);
+            model.compile({ optimizer: optimizer, loss: 'categoricalCrossentropy', metrics: ['accuracy'] });
+
+            await model.fit(dataset.xs, dataset.ys, {
+                epochs: 10,
+                callbacks: {
+                    onBatchEnd: async (batch, logs) => {
+                        console.log(`Loss: ${logs.loss.toFixed(5)}`);
+                    }
+                }
+            });
+
+            alert('Training completed!');
+        }
+
+        // Save the model
+        function saveModel() {
+            model.save('downloads://dapur_pintar_model');
+        }
+
+        // Initialize the webcam and the model
+        async function init() {
+            try {
+                await webcam.setup();
+                mobilenet = await loadMobilenet();
+                tf.tidy(() => mobilenet.predict(webcam.capture()));
+                console.log("Mobilenet initialized successfully.");
+            } catch (error) {
+                console.error("Error during initialization:", error);
+            }
+        }
+
+        init();
+    </script>
+</body>
+</html>
