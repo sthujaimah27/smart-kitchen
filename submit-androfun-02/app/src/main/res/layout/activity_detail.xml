@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.detailEvent.DetailActivity">
+
+    <!-- Cover Image -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/iv_cover_event"
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        android:scaleType="centerCrop"
+        tools:visibility="visible"
+        android:visibility="visible"
+        android:src="@drawable/empty_image"
+        android:background="@drawable/rounded_outline_bottom_image"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Icon Image -->
+    <ImageView
+        android:id="@+id/iv_icon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="-40dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/empty_image"
+        android:layout_marginStart="20dp"
+        tools:visibility="visible"
+        android:visibility="visible"
+        android:background="@drawable/rounded_image_icon"
+        app:layout_constraintTop_toBottomOf="@id/iv_cover_event"
+        app:layout_constraintStart_toStartOf="parent"
+        android:elevation="8dp" />
+
+    <LinearLayout
+        android:id="@+id/date_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="5dp"
+        android:paddingVertical="4dp"
+        tools:visibility="visible"
+        android:visibility="visible"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/rounded_black_background"
+        android:elevation="4dp">
+
+
+        <ImageView
+            android:id="@+id/icon_date"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/icon_calendar_white"
+            android:layout_marginEnd="4dp"
+            android:contentDescription="Date Icon" />
+
+
+        <TextView
+            android:id="@+id/tv_event_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12 Dec 2024"
+            android:layout_marginRight="4dp"
+            android:textSize="16sp"
+            android:textColor="#FFFFFF" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="12 Dec 2024"
+        tools:visibility="visible"
+        android:visibility="visible"
+        android:background="@drawable/rounded_black_background"
+        android:elevation="4dp"
+        android:paddingHorizontal="5dp"
+        android:paddingVertical="4dp"
+        android:layout_marginRight="4dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:textSize="16sp"
+        android:textColor="#FFFFFF" />
+
+    <ScrollView
+        android:id="@+id/scroll_view_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        tools:visibility="visible"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@id/iv_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_name_event"
+                style="@style/textColor"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Nama Event"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginHorizontal="16dp"/>
+
+            <TextView
+                android:id="@+id/tv_header_sumarry"
+                style="@style/textColor"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Sumarry event"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:maxLines="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_name_event"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="40dp"/>
+
+            <TextView
+                android:id="@+id/tv_sumarry"
+                style="@style/textColor"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Nama Event"
+                android:textSize="16dp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_header_sumarry"
+                android:layout_marginHorizontal="16dp"/>
+
+            <TextView
+                android:id="@+id/tv_header_owner"
+                style="@style/textColor"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Owner Event"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:maxLines="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_sumarry"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:id="@+id/tv_owner_event"
+                style="@style/textColor"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Nama Event"
+                android:textSize="16dp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_header_owner"
+                android:layout_marginHorizontal="16dp"/>
+
+            <TextView
+                android:id="@+id/tv_quota_owner"
+                style="@style/textColor"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Quota"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:maxLines="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_owner_event"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:id="@+id/tv_quotas"
+                style="@style/textColor"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Nama Event"
+                android:textSize="16dp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_quota_owner"
+                android:layout_marginHorizontal="16dp"/>
+
+            <TextView
+                android:id="@+id/tv_description_event"
+                style="@style/textColor"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Description"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:maxLines="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_quotas"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:id="@+id/tv_description"
+                style="@style/textColor"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Nama Event"
+                android:textSize="16dp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="500dp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_description_event"
+                android:layout_marginHorizontal="16dp"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/backgroundDetailButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <!-- Join Button -->
+        <Button
+            android:id="@+id/center_button"
+            android:layout_width="0dp"
+            android:layout_marginVertical="30dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_shadow_background"
+            android:text="Let's Join This Event"
+            android:paddingVertical="10dp"
+            android:layout_marginStart="20dp"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/favorite_button"
+           />
+
+        <!-- Favorite Icon Button -->
+        <ImageButton
+            android:id="@+id/favorite_button"
+            android:layout_width="70dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/icon_fav_outline"
+            android:contentDescription="Favorite Button"
+            app:tint="@color/dicoding_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/center_button"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

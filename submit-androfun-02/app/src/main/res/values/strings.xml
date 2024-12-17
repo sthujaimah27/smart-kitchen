@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">AndroidMobile-Sub02</string>
+    <string name="title_home">Home</string>
+    <string name="title_settings">Settings</string>
+    <string name="title_fav">Favorite</string>
+    <string name="title_upcoming">Upcoming</string>
+    <string name="title_finished">Finished</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="string_mode_dark">Dark Mode Switch</string>
+    <string name="tv_dark_mode">Dark Mode</string>
+    <string name="profile">Profile</string>
+    <string name="title_scan">Scan</string>
+    <string name="title_profile">Profile</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="smart_kitchen">Smart Kitchen</string>
+</resources>

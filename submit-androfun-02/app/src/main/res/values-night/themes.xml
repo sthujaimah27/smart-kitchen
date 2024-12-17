@@ -1,0 +1,72 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme for Dark Mode. -->
+    <style name="Theme.AndroidMobileSub02" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/dicoding_color</item>
+        <item name="colorPrimaryVariant">@color/dicoding_color</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <!-- Secondary brand color for bottom navigation and other accents. -->
+        <item name="colorSecondary">@color/dicoding_color</item>
+        <item name="colorOnSecondary">@color/white</item>
+
+        <!-- Background color for all pages. -->
+        <item name="android:colorBackground">#1F1F1F</item>
+
+        <!-- Status bar color (matches app bar color). -->
+        <item name="android:statusBarColor">@color/background_dark</item>
+
+        <!-- Text color for primary content. -->
+        <item name="android:textColorPrimary">@color/white</item>
+
+        <!-- Customize other theme attributes here. -->
+    </style>
+
+    <!-- App Bar Text Styling for White Text in Dark Mode. -->
+    <style name="HeadlineMedium.Bold">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!-- Bottom Navigation Style -->
+    <style name="BottomNavigation">
+        <item name="android:background">@color/dicoding_color</item>
+        <item name="itemIconTint">@color/white</item>
+        <item name="itemTextColor">@color/white</item>
+    </style>
+
+    <!-- Set background color for Card items and other components as needed. -->
+    <style name="CardItem">
+        <item name="android:background">#1F1F1F</item>
+    </style>
+
+    <!-- Body Text Style for Dark Mode with White Text. -->
+    <style name="BodyMedium">
+        <item name="android:textAppearance">@style/TextAppearance.Material3.BodyMedium</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!-- Other Text Styles as Needed -->
+    <style name="BodyMedium.White">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="textColor" parent="">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="quotaIcon">
+        <item name="android:src">@drawable/baseline_supervisor_account_24_white</item>
+    </style>
+
+    <style name="backgroundDetailButton">
+        <item name="android:background">@color/background_brown</item>
+        <item name="itemIconTint">@color/color_selectoer_item_night</item>
+        <item name="itemTextColor">@color/color_selectoer_item_night</item>
+    </style>
+    <style name="ThemeOverlay.AndroidMobileSub02.FullscreenContainer" parent="">
+        <item name="fullscreenBackgroundColor">@color/light_blue_900</item>
+        <item name="fullscreenTextColor">@color/light_blue_A400</item>
+    </style>
+
+</resources>
