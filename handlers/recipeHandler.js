@@ -3,17 +3,17 @@ const fs = require('fs');
 const path = require('path');
 const Joi = require('joi');
 const { verifyToken } = require('../utils/authUtils');
-const tf = require('@tensorflow/tfjs-node');
+// const tf = require('@tensorflow/tfjs-node');
 const { loadModel, predictImage } = require('./modelHandler')
 
 const scanImages = async (request, h) => {
-    const token = request.headers.authorization;
-    const decoded = verifyToken(token);
+    // const token = request.headers.authorization;
+    // const decoded = verifyToken(token);
     const { image } = request.payload;
 
-    if (!decoded) {
-        return h.response({ status: 'fail', message: 'Unauthorized' }).code(401);
-    }
+    // if (!decoded) {
+    //     return h.response({ status: 'fail', message: 'Unauthorized' }).code(401);
+    // }
 
     try {
         // Validate image exists
@@ -73,8 +73,8 @@ const scanImages = async (request, h) => {
 
 const getRecomRecipes = async (request, h) => {
     const { ingredients } = request.payload;
-    const token = request.headers.authorization;
-    const decoded = verifyToken(token);
+    // const token = request.headers.authorization;
+    // const decoded = verifyToken(token);
 
     let dataRecipes = {
         "detected_ingredient": "Ayam",
@@ -82,6 +82,7 @@ const getRecomRecipes = async (request, h) => {
           {
             "id": 1372,
             "title": "Ayam Kecap ulalaaa",
+            "image" : "https://img-global.cpcdn.com/recipes/f2aa46ae0654b804/680x964cq70/ayam-kecap-ulalaaa-foto-resep-utama.webp",
             "loves": 26,
             "ingredients": [
               "1/2 kg ayam",
@@ -112,6 +113,7 @@ const getRecomRecipes = async (request, h) => {
           {
             "id": 1360,
             "title": "Ayam Suwir Khas Lombok",
+            "image": "https://img-global.cpcdn.com/recipes/b26f7a78ca83efeb/680x964cq70/ayam-suwir-khas-lombok-foto-resep-utama.webp",
             "loves": 15,
             "ingredients": [
               "500 gr dada ayam fillet, rebus dan suwir",
@@ -136,6 +138,7 @@ const getRecomRecipes = async (request, h) => {
           {
             "id": 958,
             "title": "Ayam goreng super duper simple",
+            "image" : "https://img-global.cpcdn.com/recipes/093388469773f7cf/680x964cq70/ayam-goreng-super-duper-simple-foto-resep-utama.webp",
             "loves": 7,
             "ingredients": [
               "Ayam, bisa diganti ati ampela/daging kambing",
@@ -152,6 +155,7 @@ const getRecomRecipes = async (request, h) => {
           {
             "id": 15574,
             "title": "Tahu tempe telor kecap sederhana",
+            "image": "https://img-global.cpcdn.com/recipes/84bfe43010587279/680x964cq70/tahu-tempe-telor-kecap-sederhana-foto-resep-utama.webp",
             "loves": 6,
             "ingredients": [
               "1 Papan Tempe",
@@ -183,6 +187,7 @@ const getRecomRecipes = async (request, h) => {
           {
             "id": 1373,
             "title": "Ayam Crispy Lada Hitam Saus Cabai dan Tomat",
+            "image": "https://img-global.cpcdn.com/recipes/242e828ce3caf1e5/680x964cq70/ayam-crispy-lada-hitam-saus-cabai-dan-tomat-foto-resep-utama.webp",
             "loves": 2,
             "ingredients": [
               "1 potong dada ayam fillet (150 gr)",
