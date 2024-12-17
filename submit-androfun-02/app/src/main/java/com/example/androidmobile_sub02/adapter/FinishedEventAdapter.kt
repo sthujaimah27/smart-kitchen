@@ -49,9 +49,11 @@ class FinishedEventAdapter : ListAdapter<Recipe, FinishedEventAdapter.MyViewHold
             .load(recipe.image) // Use the actual image URL
             .placeholder(R.drawable.empty_image) // Use a placeholder image
             .error(R.drawable.empty_image) // Use an error image if loading fails
-            .centerCrop()
-            .override(300, 250) // Set a fixed size
+            .centerCrop() // Crop the image to fill the view
+            .override(300) // Set the maximum width to 300px
             .into(holder.binding.imgEvent)
+
+
 
         holder.binding.itemRoot.setOnClickListener {
             onItemClickCallback.onItemClicked(recipe)

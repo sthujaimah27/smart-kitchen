@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide
 import com.example.androidmobile_sub02.R
 import com.example.androidmobile_sub02.data.local.entity.EventEntity
 import com.example.androidmobile_sub02.data.remote.response.DetailEventResource
+import com.example.androidmobile_sub02.data.remote.response.DetailRecipeResource
 import com.example.androidmobile_sub02.databinding.ActivityDetailBinding
 import com.example.androidmobile_sub02.ui.ViewModelFactory
 import com.example.androidmobile_sub02.ui.themeSetting.ThemeSettingViewModel
@@ -110,32 +111,51 @@ class DetailActivity : AppCompatActivity() {
         )
     }
 
-    private fun setUpDetailEvent(it: DetailEventResource) {
-        val beginTime = DateUtils.formatDate(it.event?.beginTime ?: "", targetFormat = "dd MMM yyyy HH:mm")
-        val endTime = DateUtils.formatDate(it.event?.endTime ?: "", targetFormat = "HH:mm")
-        val quotas = it.event?.quota?.minus(it.event?.registrants ?: 0) ?: 0
-        binding.tvEventDate.text = "$beginTime - $endTime"
-        binding.tvNameEvent.text = it.event?.name ?: ""
-        binding.tvSumarry.text = it.event?.summary ?: ""
-        binding.tvOwnerEvent.text = it.event?.ownerName ?: ""
-        binding.tvCategory.text = it.event?.category ?: ""
-        binding.tvQuotas.text = "$quotas Tersedia"
-        binding.tvDescription.text = Html.fromHtml(it.event?.description, Html.FROM_HTML_MODE_COMPACT)
+    private fun setUpDetailEvent(it: DetailRecipeResource) {
+        val eventData = it.data
+        if (eventData != null) {
+            binding.tvNameEvent.text = eventData.title ?: "No Title"
+            binding.tvSumarry.text = eventData.ingredients?.joinToString("\n") ?: "No Ingredients"
+            binding.tvOwnerEvent.text = eventData.instructions?.joinToString("\n") ?: "No Instructions"
+            Glide.with(this)
+                .load(eventData.image)
+                .centerCrop()
+                .into(binding.ivCoverEvent)
 
-        Glide.with(this)
-            .load(it.event?.mediaCover)
-            .centerCrop()
-            .into(binding.ivCoverEvent)
+            Glide.with(this)
+                .load(eventData.image)
+                .centerCrop()
+                .into(binding.ivIcon)
+        } else {
+            Log.e("DetailActivity", "Event data is null")
+        }
 
-        Glide.with(this)
-            .load(it.event?.imageLogo)
-            .centerCrop()
-            .into(binding.ivIcon)
+
+////        val beginTime = DateUtils.formatDate(it.event?.beginTime ?: "", targetFormat = "dd MMM yyyy HH:mm")
+////        val endTime = DateUtils.formatDate(it.event?.endTime ?: "", targetFormat = "HH:mm")
+////        val quotas = it.event?.quota?.minus(it.event?.registrants ?: 0) ?: 0
+////        binding.tvEventDate.text = "$beginTime - $endTime"
+//        binding.tvNameEvent.text = it.data?.firstOrNull()?.title ?: ""
+//        binding.tvSumarry.text = it.data?.firstOrNull()?.ingredients?.joinToString("\n") ?: ""
+//        binding.tvOwnerEvent.text = it.data?.firstOrNull()?.instructions?.joinToString("\n") ?: ""
+////        binding.tvCategory.text = it.event?.category ?: ""
+////        binding.tvQuotas.text = "$quotas Tersedia"
+////        binding.tvDescription.text = Html.fromHtml(it.event?.description, Html.FROM_HTML_MODE_COMPACT)
+////
+//        Glide.with(this)
+//            .load(it.data?.firstOrNull()?.image)
+//            .centerCrop()
+//            .into(binding.ivCoverEvent)
+//
+//        Glide.with(this)
+//            .load(it.data?.firstOrNull()?.image)
+//            .centerCrop()
+//            .into(binding.ivIcon)
 
         val data = it
 
         binding.centerButton.setOnClickListener {
-            val link = data.event?.link
+            val link = data.data?.source
             if (!link.isNullOrEmpty()) {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(link)).apply {
                     setPackage("com.android.chrome")
@@ -143,23 +163,23 @@ class DetailActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
-
-        dataDetail = EventEntity(
-            id = it.event?.id ?: 0,
-            name = it.event?.name ?: "",
-            beginTime = it.event?.beginTime ?: "",
-            endTime = it.event?.endTime ?: "",
-            mediaCover = it.event?.mediaCover ?: "",
-            imageLogo = it.event?.imageLogo ?: "",
-            ownerName = it.event?.ownerName ?: "",
-            category = it.event?.category ?: "",
-            description = it.event?.description ?: "",
-            link = it.event?.link ?: "",
-            quota = it.event?.quota ?: 0,
-            registrants = it.event?.registrants ?: 0,
-            summary = it.event?.summary ?: "",
-            cityName = it.event?.cityName ?: ""
-        )
+//
+//        dataDetail = EventEntity(
+//            id = it.event?.id ?: 0,
+//            name = it.event?.name ?: "",
+//            beginTime = it.event?.beginTime ?: "",
+//            endTime = it.event?.endTime ?: "",
+//            mediaCover = it.event?.mediaCover ?: "",
+//            imageLogo = it.event?.imageLogo ?: "",
+//            ownerName = it.event?.ownerName ?: "",
+//            category = it.event?.category ?: "",
+//            description = it.event?.description ?: "",
+//            link = it.event?.link ?: "",
+//            quota = it.event?.quota ?: 0,
+//            registrants = it.event?.registrants ?: 0,
+//            summary = it.event?.summary ?: "",
+//            cityName = it.event?.cityName ?: ""
+//        )
 
         Log.e("DetailData", "setUpDetailEvent: $dataDetail")
     }
@@ -170,10 +190,10 @@ class DetailActivity : AppCompatActivity() {
         } else {
             binding.apply {
                 progressBar.visibility = View.GONE
-                dateContainer.visibility = View.VISIBLE
+//                dateContainer.visibility = View.VISIBLE
                 ivCoverEvent.visibility = View.VISIBLE
                 ivIcon.visibility = View.VISIBLE
-                tvCategory.visibility = View.VISIBLE
+//                tvCategory.visibility = View.VISIBLE
                 scrollViewDetail.visibility = View.VISIBLE
             }
         }

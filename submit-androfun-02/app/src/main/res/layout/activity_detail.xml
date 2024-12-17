@@ -49,62 +49,62 @@
         app:layout_constraintStart_toStartOf="parent"
         android:elevation="8dp" />
 
-    <LinearLayout
-        android:id="@+id/date_container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingHorizontal="5dp"
-        android:paddingVertical="4dp"
-        tools:visibility="visible"
-        android:visibility="visible"
-        android:gravity="center_vertical"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/rounded_black_background"
-        android:elevation="4dp">
+<!--    <LinearLayout-->
+<!--        android:id="@+id/date_container"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:paddingHorizontal="5dp"-->
+<!--        android:paddingVertical="4dp"-->
+<!--        tools:visibility="visible"-->
+<!--        android:visibility="visible"-->
+<!--        android:gravity="center_vertical"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_marginEnd="20dp"-->
+<!--        android:background="@drawable/rounded_black_background"-->
+<!--        android:elevation="4dp">-->
 
 
-        <ImageView
-            android:id="@+id/icon_date"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/icon_calendar_white"
-            android:layout_marginEnd="4dp"
-            android:contentDescription="Date Icon" />
+<!--        <ImageView-->
+<!--            android:id="@+id/icon_date"-->
+<!--            android:layout_width="24dp"-->
+<!--            android:layout_height="24dp"-->
+<!--            android:src="@drawable/icon_calendar_white"-->
+<!--            android:layout_marginEnd="4dp"-->
+<!--            android:contentDescription="Date Icon" />-->
 
 
-        <TextView
-            android:id="@+id/tv_event_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="12 Dec 2024"
-            android:layout_marginRight="4dp"
-            android:textSize="16sp"
-            android:textColor="#FFFFFF" />
+<!--        <TextView-->
+<!--            android:id="@+id/tv_event_date"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="12 Dec 2024"-->
+<!--            android:layout_marginRight="4dp"-->
+<!--            android:textSize="16sp"-->
+<!--            android:textColor="#FFFFFF" />-->
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
 
-    <TextView
-        android:id="@+id/tv_category"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="12 Dec 2024"
-        tools:visibility="visible"
-        android:visibility="visible"
-        android:background="@drawable/rounded_black_background"
-        android:elevation="4dp"
-        android:paddingHorizontal="5dp"
-        android:paddingVertical="4dp"
-        android:layout_marginRight="4dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        android:textSize="16sp"
-        android:textColor="#FFFFFF" />
+<!--    <TextView-->
+<!--        android:id="@+id/tv_category"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="12 Dec 2024"-->
+<!--        tools:visibility="visible"-->
+<!--        android:visibility="visible"-->
+<!--        android:background="@drawable/rounded_black_background"-->
+<!--        android:elevation="4dp"-->
+<!--        android:paddingHorizontal="5dp"-->
+<!--        android:paddingVertical="4dp"-->
+<!--        android:layout_marginRight="4dp"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_marginStart="20dp"-->
+<!--        android:textSize="16sp"-->
+<!--        android:textColor="#FFFFFF" />-->
 
     <ScrollView
         android:id="@+id/scroll_view_detail"
@@ -139,7 +139,7 @@
                 style="@style/textColor"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Sumarry event"
+                android:text="Ingredients"
                 android:textSize="18dp"
                 android:textStyle="bold"
                 android:maxLines="1"
@@ -167,7 +167,7 @@
                 style="@style/textColor"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Owner Event"
+                android:text="Instructions"
                 android:textSize="18dp"
                 android:textStyle="bold"
                 android:maxLines="1"
@@ -187,66 +187,68 @@
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="500dp"
                 app:layout_constraintTop_toBottomOf="@+id/tv_header_owner"
                 android:layout_marginHorizontal="16dp"/>
 
-            <TextView
-                android:id="@+id/tv_quota_owner"
-                style="@style/textColor"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Quota"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                android:maxLines="1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_owner_event"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="20dp"/>
+<!--            <TextView-->
+<!--                android:id="@+id/tv_quota_owner"-->
+<!--                style="@style/textColor"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Quota"-->
+<!--                android:textSize="18dp"-->
+<!--                android:textStyle="bold"-->
+<!--                android:maxLines="1"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/tv_owner_event"-->
+<!--                android:layout_marginHorizontal="16dp"-->
+<!--                android:layout_marginTop="20dp"/>-->
 
-            <TextView
-                android:id="@+id/tv_quotas"
-                style="@style/textColor"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Nama Event"
-                android:textSize="16dp"
-                android:textStyle="normal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_quota_owner"
-                android:layout_marginHorizontal="16dp"/>
+<!--            <TextView-->
+<!--                android:id="@+id/tv_quotas"-->
+<!--                style="@style/textColor"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Nama Event"-->
+<!--                android:textSize="16dp"-->
+<!--                android:textStyle="normal"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/tv_quota_owner"-->
+<!--                android:layout_marginHorizontal="16dp"/>-->
 
-            <TextView
-                android:id="@+id/tv_description_event"
-                style="@style/textColor"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Description"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                android:maxLines="1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_quotas"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="20dp"/>
+<!--            <TextView-->
+<!--                android:id="@+id/tv_description_event"-->
+<!--                style="@style/textColor"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Description"-->
+<!--                android:textSize="18dp"-->
+<!--                android:textStyle="bold"-->
+<!--                android:maxLines="1"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/tv_quotas"-->
+<!--                android:layout_marginHorizontal="16dp"-->
+<!--                android:layout_marginTop="20dp"/>-->
 
-            <TextView
-                android:id="@+id/tv_description"
-                style="@style/textColor"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Nama Event"
-                android:textSize="16dp"
-                android:textStyle="normal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="500dp"
-                app:layout_constraintTop_toBottomOf="@+id/tv_description_event"
-                android:layout_marginHorizontal="16dp"/>
+<!--            <TextView-->
+<!--                android:id="@+id/tv_description"-->
+<!--                style="@style/textColor"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Nama Event"-->
+<!--                android:textSize="16dp"-->
+<!--                android:textStyle="normal"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                android:layout_marginBottom="500dp"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/tv_description_event"-->
+<!--                android:layout_marginHorizontal="16dp"/>-->
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

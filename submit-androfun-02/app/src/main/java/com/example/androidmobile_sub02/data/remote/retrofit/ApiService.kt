@@ -1,6 +1,7 @@
 package com.example.androidmobile_sub02.data.remote.retrofit
 
 import com.example.androidmobile_sub02.data.remote.response.DetailEventResource
+import com.example.androidmobile_sub02.data.remote.response.DetailRecipeResource
 import com.example.androidmobile_sub02.data.remote.response.GetAllEventResource
 import com.example.androidmobile_sub02.data.remote.response.IngredientResponse
 import com.example.androidmobile_sub02.data.remote.response.RecipeResponse
@@ -49,5 +50,10 @@ interface ApiService {
     fun recommendRecipes(
         @Body body: RequestBody
     ): Call<RecipeResponse>
+
+    @POST("/get-recipe")
+    fun getDetailRecipe(
+        @Body body: RequestBody
+    ): Call<DetailRecipeResource>
 
 }

@@ -95,16 +95,25 @@ class FinishedEventFragment : Fragment() {
 
         adapter.setOnItemClickCallback(object : FinishedEventAdapter.OnItemClickCallback {
             override fun onItemClicked(data: Recipe) {
-                // Open recipe source URL in browser
-                data.source?.let { source ->
+                data.id?.let { recipeId ->
                     try {
-                        val uri = Uri.parse(source)
-                        val intent = Intent(Intent.ACTION_VIEW, uri)
-                        startActivity(intent)
-                    } catch (e: Exception) {
-                        Log.e("FinishedEventFragment", "Error opening source URL: ${e.message}")
+                        val intent = Intent(context, DetailActivity::class.java)
+                        intent.putExtra(DetailActivity.ID_EVENT_KEY, recipeId)
+                        context?.startActivity(intent)
+                    } catch (e: Exception){
+                        Log.e("FinishedEventFragment", "Error redirection to Detail Recipe: ${e.message}")
                     }
                 }
+                // Open recipe source URL in browser
+//                data.source?.let { source ->
+//                    try {
+//                        val uri = Uri.parse(source)
+//                        val intent = Intent(Intent.ACTION_VIEW, uri)
+//                        startActivity(intent)
+//                    } catch (e: Exception) {
+//                        Log.e("FinishedEventFragment", "Error opening source URL: ${e.message}")
+//                    }
+//                }
             }
         })
     }
