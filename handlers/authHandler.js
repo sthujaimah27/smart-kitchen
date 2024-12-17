@@ -22,22 +22,27 @@ const registerHandler = async (request, h) => {
         return h.response({ status: 'fail', message: error.message }).code(400);
     }
 
-    // Cek apakah username/email sudah terdaftar
-    const [userExists] = await pool.query('SELECT * FROM users WHERE username = ? OR email = ?', [username, email]);
-    if (userExists.length > 0) {
-        return h.response({ status: 'fail', message: 'Username atau email sudah digunakan.' }).code(400);
+    try {
+        // Cek apakah username/email sudah terdaftar
+        const [userExists] = await pool.query('SELECT * FROM users WHERE username = ? OR email = ?', [username, email]);
+        if (userExists.length > 0) {
+            return h.response({ status: 'fail', message: 'Username atau email sudah digunakan.' }).code(400);
+        }
+    
+        // Hash password
+        const hashedPassword = await bcrypt.hash(password, 10);
+    
+        // Tambahkan pengguna baru ke database
+        const [newUser] = await pool.query(
+            'INSERT INTO users (id, nama, username, email, password) VALUES (?, ?, ?, ?, ?)',
+            [require('nanoid').nanoid(), nama, username, email, hashedPassword]
+        );
+    
+        return h.response({ status: 'success', message: 'Registrasi berhasil!' }).code(201);
+        
+    } catch (error) {
+        return h.response({ status: 'fail', message: error.message }).code(401);
     }
-
-    // Hash password
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    // Tambahkan pengguna baru ke database
-    const [newUser] = await pool.query(
-        'INSERT INTO users (id, nama, username, email, password) VALUES (?, ?, ?, ?, ?)',
-        [require('nanoid').nanoid(), nama, username, email, hashedPassword]
-    );
-
-    return h.response({ status: 'success', message: 'Registrasi berhasil!' }).code(201);
 };
 
 // Login Handler
