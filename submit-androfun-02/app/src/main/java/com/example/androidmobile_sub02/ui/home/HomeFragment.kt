@@ -1,10 +1,13 @@
 package com.example.androidmobile_sub02.ui.home
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
@@ -13,6 +16,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.androidmobile_sub02.MainActivity
 import com.example.androidmobile_sub02.R
 import com.example.androidmobile_sub02.adapter.FinishedEventAdapter
 import com.example.androidmobile_sub02.adapter.FinishedEventHomeAdapter
@@ -28,12 +32,8 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val homeViewModel by viewModels<HomeViewModel>()
-//    private val viewModel: ThemeSettingViewModel by viewModels() {
-//        ViewModelFactory.getInstance(requireContext())
-//    }
+    private lateinit var sharedPreferences: SharedPreferences
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -44,10 +44,29 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        sharedPreferences = requireContext().getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
+
+        // Set up the button click listener for "Keluar Akun"
+        binding.root.findViewById<Button>(R.id.actionButton).setOnClickListener {
+            // Set "isLogin" to false
+            sharedPreferences.edit().putBoolean("isLogin", false).apply()
+
+            // Restart the app by launching MainActivity and finishing the current activity
+            val intent = Intent(requireContext(), MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            requireActivity().finish() // Close the current fragment's activity
+        }
+
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

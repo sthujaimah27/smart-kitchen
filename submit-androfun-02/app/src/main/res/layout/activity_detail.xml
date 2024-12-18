@@ -270,32 +270,33 @@
             android:layout_marginVertical="30dp"
             android:layout_height="wrap_content"
             android:background="@drawable/button_shadow_background"
-            android:text="Let's Join This Event"
+            android:text="Recipe Source"
             android:paddingVertical="10dp"
             android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:textColor="@color/white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/favorite_button"
+            app:layout_constraintEnd_toEndOf="parent"
            />
 
         <!-- Favorite Icon Button -->
-        <ImageButton
-            android:id="@+id/favorite_button"
-            android:layout_width="70dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginEnd="20dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/icon_fav_outline"
-            android:contentDescription="Favorite Button"
-            app:tint="@color/dicoding_color"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/center_button"/>
+<!--        <ImageButton-->
+<!--            android:id="@+id/favorite_button"-->
+<!--            android:layout_width="70dp"-->
+<!--            android:layout_height="60dp"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            android:layout_marginHorizontal="20dp"-->
+<!--            android:layout_marginEnd="20dp"-->
+<!--            android:background="?attr/selectableItemBackgroundBorderless"-->
+<!--            android:src="@drawable/icon_fav_outline"-->
+<!--            android:contentDescription="Favorite Button"-->
+<!--            app:tint="@color/dicoding_color"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/center_button"/>-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

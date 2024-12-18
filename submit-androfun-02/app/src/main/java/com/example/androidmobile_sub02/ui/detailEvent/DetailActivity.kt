@@ -73,22 +73,22 @@ class DetailActivity : AppCompatActivity() {
 
         detailViewModel.isEventFav(eventId = idEvent).observe(this) {
             isFavEvent = it
-            setIconFavorite(it)
+//            setIconFavorite(it)
         }
 
-        binding.favoriteButton.setOnClickListener {
-            if (dataDetail != null) {
-                if (isFavEvent) {
-                    detailViewModel.deleteEventFav(idEvent)
-                    setIconFavorite(false)
-                } else {
-                    detailViewModel.insertEventFav(dataDetail!!)
-                    setIconFavorite(true)
-                }
-            } else {
-                Log.e("TAG", "dataDetail is null, cannot insert/delete favorite")
-            }
-        }
+//        binding.favoriteButton.setOnClickListener {
+//            if (dataDetail != null) {
+//                if (isFavEvent) {
+//                    detailViewModel.deleteEventFav(idEvent)
+//                    setIconFavorite(false)
+//                } else {
+//                    detailViewModel.insertEventFav(dataDetail!!)
+//                    setIconFavorite(true)
+//                }
+//            } else {
+//                Log.e("TAG", "dataDetail is null, cannot insert/delete favorite")
+//            }
+//        }
 
         lifecycleScope.launch {
             viewModel.getThemeSetting().collect{ isDarkModeActive ->
@@ -105,11 +105,11 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun setIconFavorite(isFavorite: Boolean) {
-        binding.favoriteButton.setImageResource(
-            if (isFavorite) R.drawable.icon_love else R.drawable.icon_fav_outline
-        )
-    }
+//    private fun setIconFavorite(isFavorite: Boolean) {
+//        binding.favoriteButton.setImageResource(
+//            if (isFavorite) R.drawable.icon_love else R.drawable.icon_fav_outline
+//        )
+//    }
 
     private fun setUpDetailEvent(it: DetailRecipeResource) {
         val eventData = it.data
