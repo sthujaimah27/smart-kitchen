@@ -46,6 +46,12 @@ class HomeFragment : Fragment() {
 
         sharedPreferences = requireContext().getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
 
+        // Retrieve the username from SharedPreferences, with a default fallback value
+        val username = sharedPreferences.getString("username", "")
+
+        // Set the username to the nameTextView
+        binding.nameTextView.text = username
+
         // Set up the button click listener for "Keluar Akun"
         binding.root.findViewById<Button>(R.id.actionButton).setOnClickListener {
             // Set "isLogin" to false

@@ -12,6 +12,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.androidmobile_sub02.databinding.FragmentCameraFeaturesBinding
+import com.example.androidmobile_sub02.ui.recipes.RecipeActivity
 
 class ImageAnalysisFragment : Fragment() {
     private var _binding: FragmentCameraFeaturesBinding? = null
@@ -69,7 +70,12 @@ class ImageAnalysisFragment : Fragment() {
     }
 
     fun moveToResult() {
-        println("DISINI NIH")
+        try {
+            val intent = Intent(context, RecipeActivity::class.java)
+            context?.startActivity(intent)
+        } catch (e: Exception){
+            Log.e("FinishedEventFragment", "Error redirection to Detail Recipe: ${e.message}")
+        }
     }
 
     private fun showToast(message: String) {

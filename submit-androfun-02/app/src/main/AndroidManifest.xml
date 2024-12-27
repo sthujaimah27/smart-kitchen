@@ -43,6 +43,9 @@
             android:name=".ui.favEvent.FavoriteEventActivity"
             android:exported="false" />
 
+        <activity android:name=".ui.recipes.RecipeActivity"
+            android:exported="false" />
+
         <activity
             android:name=".ui.detailEvent.DetailActivity"
             android:exported="false" />

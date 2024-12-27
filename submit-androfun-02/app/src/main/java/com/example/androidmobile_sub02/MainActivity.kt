@@ -133,7 +133,7 @@ class MainActivity : AppCompatActivity() {
         val mediaType = "application/x-www-form-urlencoded".toMediaType()
         val body = "username=$username&password=$password".toRequestBody(mediaType)
         val request = Request.Builder()
-            .url("http://34.101.181.114:3000/login")
+            .url("https://b6ad-103-167-218-161.ngrok-free.app/login")
             .post(body)
             .addHeader("Content-Type", "application/x-www-form-urlencoded")
             .build()
@@ -162,6 +162,7 @@ class MainActivity : AppCompatActivity() {
                         }
                     } else {
                         // Handle successful login (status is not "fail")
+                        sharedPreferences.edit().putString("username", username).apply()
                         sharedPreferences.edit().putBoolean("isLogin", true).apply()
                         setupMainScreen()
                     }
